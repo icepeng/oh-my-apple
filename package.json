@@ -8,7 +8,6 @@
     "format": "prettier --write \"**/*.ts\"",
     "start": "node dist/main.js",
     "start:dev": "nodemon",
-    "postinstall": "rm -rf dist && tsc",
     "prestart:prod": "rm -rf dist && tsc",
     "start:prod": "node dist/main.js",
     "start:hmr": "node dist/server",
