@@ -1,7 +1,7 @@
 // tslint:disable:no-console
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ItemService } from 'item/item.service';
+import { ItemService } from './item/item.service';
 import { timer } from 'rxjs';
 import { ValidationPipe } from '@nestjs/common';
 
