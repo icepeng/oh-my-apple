@@ -12,17 +12,15 @@ export class ItemService {
   ) {}
 
   async getItemList(type: 'NORMAL' | 'DECORATION') {
-    return this.itemListRepository.find({
-      where: type
-        ? {
-            type,
-          }
-        : {},
-      relations: ['items'],
-      order: {
-        createTime: 'DESC',
-      },
-    });
+    const query = this.itemListRepository
+      .createQueryBuilder('itemList')
+      .leftJoinAndSelect('itemList.items', 'item')
+      .orderBy('itemList.createTime', 'DESC')
+      .addOrderBy('item.id', 'ASC');
+    if (type) {
+      query.where('itemList.type = :type', { type });
+    }
+    return query.getMany();
   }
 
   async scrapItemList(type: 'NORMAL' | 'DECORATION') {
